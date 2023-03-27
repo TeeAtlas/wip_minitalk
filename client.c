@@ -6,7 +6,7 @@
 /*   By: taboterm <taboterm@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:28:20 by taboterm          #+#    #+#             */
-/*   Updated: 2023/03/27 18:42:36 by taboterm         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:45:20 by taboterm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_atoi(const char *str)
 		i++;
 	if (str[i] == '-')
 		sign = -1;
-	if (str[i] >= 48 || str[i] == 45)
+	if (str[i] == 43 || str[i] == 45)
 		i++;
 	while (str[i] >= 48 && str[i] <= 57) // could be handled with is digit function 
 	{
