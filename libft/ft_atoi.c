@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taboterm <taboterm@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: taboterm <taboterm@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 15:28:53 by taboterm          #+#    #+#             */
-/*   Updated: 2022/11/05 14:51:23 by taboterm         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:49:33 by taboterm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
