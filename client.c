@@ -6,7 +6,7 @@
 /*   By: taboterm <taboterm@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:28:20 by taboterm          #+#    #+#             */
-/*   Updated: 2023/03/27 18:45:20 by taboterm         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:52:11 by taboterm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,31 @@
 #include <signal.h>
 #include <stdlib.h>
 
+int	ft_isdigit(int c)
+{
+	if (c > 47 && c < 58)
+		return (1);
+	return (0);
+}
+
 int	ft_atoi(const char *str)
 {
 	int	i;
-	int	res;
+	int	value;
 	int	sign;
 
 	i = 0;
-	res = 0;
-	sign = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	value = 0;
+	sign = 1;
+	while (*(str + i) == ' ' || (*(str + i) >= 9 && *(str + i) <= 13))
 		i++;
-	if (str[i] == '-')
-		sign = -1;
-	if (str[i] == 43 || str[i] == 45)
-		i++;
-	while (str[i] >= 48 && str[i] <= 57) // could be handled with is digit function 
-	{
-		res = res * 10 + str[i] - 48;
-		i++;
-	}
-	return (sign * res);
+	if (*(str + i) == '-' || *(str + i) == '+')
+		sign = 1 - 2 * (str[i++] == '-');
+	else if (*str == '\0')
+		return (0);
+	while (ft_isdigit(*(str + i)))
+		value = value * 10 + *(str + i++) - '0';
+	return ((int)(sign * value));
 }
 
 void	send_message(int pid, char *str)
@@ -43,9 +47,11 @@ void	send_message(int pid, char *str)
 	int	j;
 	
 	i = 0;
-	j = 0;
-	while (j < 7)
+	while (str[i])
 	{
+		j = 0;
+		while (j < 7)
+		{
 		if ((str[i] & 1) == 0) // sending string as ascii to binary per character
 			kill(pid, SIGUSR1);
 		if ((str[i] & 1) == 1)
@@ -53,8 +59,9 @@ void	send_message(int pid, char *str)
 		str[i] = str[i] >> 1; // we are shifting bits to the right until statement is true
 		j++;
 		usleep(200); //using sleep to avoid a delay, wherein the information can get jumbled
+		}
+		i++;
 	}
-	i++;
 }
 
 int	main(int argc, char **argv)
